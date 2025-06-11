@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Role</title>
+  <style>
+    :root {
+      --primary-color: #ffffff;
+      --text-color: #000000;
+      --accent-color: #007BFF; /* Blue */
+      --button-color: #FFAD00; /* Yellow */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f2f4f8;
+      color: var(--text-color);
+    }
+
+    header {
+      background: var(--primary-color);
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+      text-align: center;
+    }
+
+    header h2 {
+      color: rgba(0, 0, 255, 0.9);
+      margin: 0;
+    }
+
+    .role-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 255, 0.15);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: var(--button-color);
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 255, 0.2);
+    }
+
+    input[type="submit"]:hover {
+      background-color: #e69900;
+    }
+
+    .flash-message {
+      padding: 10px;
+      margin-bottom: 1rem;
+      background: #d4edda;
+      border-left: 6px solid #28a745;
+      color: #155724;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Add Role</h2>
+  </header>
+
+  <div class="role-container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" placeholder="e.g., Judge, Manager" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" min="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" placeholder="10-digit number" required>
+      </div>
+
+      <input type="submit" value="Add Role">
+    </form>
+  </div>
+
+</body>
+</html>
